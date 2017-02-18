@@ -1,25 +1,26 @@
 var expect = require('chai').expect;
 
 describe('测试单个字符串的值', function () {
-    var str, strEmpty, strNull, strUndefined, strObj;
+    var str, strEmpty, strNumber, strBoolean, strNull, strUndefined, strObj;
 
     // 每个用例执行之前，都重新初始化值
     beforeEach(function () {
         str = 'He';
         strEmpty = '';
+        strNumber = 1;
+        strBoolean = true;
         strNull = null;
         strUndefined = undefined;
         strObj = {};
     });
 
-    it('[str] 和 [strEmpty] 为 string 类型，但 [strObj]、[strNull]、[strUndefined] 皆不是', function () {
+    it('[str] 和 [strEmpty] 为 string 类型，但 [strNumber]、[strObj] 等皆不是', function () {
         // a 和 an 都是一样的
         expect(str).to.be.a('string');
         expect(strEmpty).to.be.an('string');
 
+        expect(strNumber).to.not.an('string');
         expect(strObj).to.not.a('string');
-        expect(strNull).to.not.a('string');
-        expect(strUndefined).to.not.an('string');
     });
 
     it('[strNull] 为 null 类型，且 [strUndefined] 不为 null 类型', function () {
