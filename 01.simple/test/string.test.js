@@ -11,15 +11,10 @@ describe('测试单个字符串的值', function () {
         obj = {};
     });
 
-    // 判断 [str] 为 string 类型: a
+    // 判断 [str] 为 string 类型
     it('判断 [str] 为 string 类型: a', function () {
         // a 和 an 都是一样的
         expect(str).to.be.a('string');
-    });
-
-    // 判断 [str] 为 string 类型: an
-    it('判断 [str] 为 string 类型: an', function () {
-        // a 和 an 都是一样的
         expect(str).to.be.an('string');
     });
 
@@ -28,19 +23,31 @@ describe('测试单个字符串的值', function () {
         expect(obj).to.not.a('string');
     });
 
-    // 判断 [str] 为真值（truthy）
+    // 判断 [str] 为真值（truthy），它会判断: !!str
     it('判断 [str] 为真值（truthy）', function () {
         expect(str).to.be.ok;
     });
 
-    // 判断 [str] 不等于 true
+    // 判断 [strEmpty] 不为真值（truthy），它会判断: !!strEmpty
+    it('判断 [strEmpty] 不为真值（truthy）', function () {
+        expect(strEmpty).to.not.be.ok;
+    });
+
+    // 判断 [str] 不等于 true，它会判断: str===true
     it('判断 [str] 不等于 true', function () {
         expect(str).to.not.be.true;
     });
 
-    // 判断 [strEmpty] 不为真值（truthy）
-    it('判断 [strEmpty] 不为真值（truthy）', function () {
-        expect(strEmpty).to.not.be.ok;
+    // 判断 [str] 不等于 false，它会判断: str===false
+    it('判断 [str] 不等于 false', function () {
+        expect(str).to.not.be.false;
+    });
+
+    // 判断 [str] 包含单词 H 和 e
+    it('判断 [str] 包含单词 H 和 e', function () {
+        // include 和 contain 都是一样的
+        expect(str).to.contain('H');
+        expect(str).to.include('e');
     });
 
 });
