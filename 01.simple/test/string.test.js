@@ -15,6 +15,7 @@ describe('测试单个字符串的值', function () {
     });
 
     it('[str] 与 "Chai" 相等，与 "chai" 不相等', function () {
+        // 严格相等 ===
         expect(str).to.equal('Chai');
         expect(str).to.not.equal('chai');
     });
@@ -53,13 +54,24 @@ describe('测试单个字符串的值', function () {
         expect(strEmpty).to.not.be.false;
     });
 
-    it('[str] 包含单词 C 和 h，但不包含 c', function () {
-        // include 和 contain 都是一样的
+    it('[str] 包含单词 C 和 ha，但不包含 c', function () {
         expect(str).to.contain('C');
-        expect(str).to.include('h');
+        expect(str).to.contain('ha');
+        expect(str).to.not.contain('c');
 
+        expect(str).to.include('C');
+        expect(str).to.include('ha');
         expect(str).to.not.include('c');
+
+        expect(str).to.have.string('C');
+        expect(str).to.have.string('ha');
+        expect(str).to.not.have.string('c');
+
+        expect(str).to.match(/C/);
+        expect(str).to.match(/ha/);
+        expect(str).to.not.match(/c/);
     });
+
 
     it('[str]/[strEmpty] 不是 null 或 undefined，但 [strNull]/[strUndefined] 皆是', function () {
         expect(str).to.exist;
@@ -81,6 +93,7 @@ describe('测试单个字符串的值', function () {
     });
 
     it('[str] 长度为4，大于1，小于5，在1和5之间', function () {
+        expect(str).to.have.lengthOf(4);
         expect(str).to.have.length.above(1);
         expect(str).to.have.length.below(5);
         expect(str).to.have.length.within(1, 5);
