@@ -33,24 +33,19 @@ describe('测试单个字符串的值', function () {
         expect(strNull).to.not.be.undefined;
     });
 
-    it('[str] 为 NaN', function () {
+    it('[str] 为 NaN，且 [strNumber] 不为 NaN', function () {
         expect(str).to.be.NaN;
+        expect(strNumber).to.not.be.NaN;
     });
 
-    it('[str] 为真值（truthy）', function () {
+    it('[str] 为真值（truthy），但不等于 true', function () {
         expect(str).to.be.ok;
-    });
-
-    it('[strEmpty] 不为真值（truthy）', function () {
-        expect(strEmpty).to.not.be.ok;
-    });
-
-    it('[str] 不等于 true', function () {
         expect(str).to.not.be.true;
     });
 
-    it('[str] 不等于 false', function () {
-        expect(str).to.not.be.false;
+    it('[strEmpty] 不为真值（truthy），且不等于 false', function () {
+        expect(strEmpty).to.not.be.ok;
+        expect(strEmpty).to.not.be.false;
     });
 
     it('[str] 包含单词 H 和 e', function () {
