@@ -72,7 +72,6 @@ describe('测试单个字符串的值', function () {
         expect(str).to.not.match(/c/);
     });
 
-
     it('[str]/[strEmpty] 不是 null 或 undefined，但 [strNull]/[strUndefined] 皆是', function () {
         expect(str).to.exist;
         expect(strEmpty).to.exist;
@@ -101,20 +100,18 @@ describe('测试单个字符串的值', function () {
 
 });
 
-// describe('字符串之间的比较', function () {
-//     var strA, strB, strEmpty, strNull, strUndefined;
-//
-//     beforeEach(function () {
-//         name = 'He';
-//     });
-//
-//     // equal(value)
-//     it('"He" is equal "He" ', function () {
-//         expect(name).to.equal('He');
-//     });
-//
-//     it('"He" is not equal "She" ', function () {
-//         expect(name).to.not.equal('She');
-//     });
-// });
-//
+describe('字符串之间的比较', function () {
+    var strA, strB;
+
+    // 每个用例执行之前，都重新初始化值
+    beforeEach(function () {
+        strA = 'strA';
+        strB = 'strB';
+    });
+
+    it('[strA] 等于 [strA]，但不等于 [strB]', function () {
+        expect(strA).to.equal(strA);
+        expect(strA).to.not.equal(strB);
+    });
+});
+
