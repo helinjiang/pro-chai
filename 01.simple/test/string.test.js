@@ -72,6 +72,13 @@ describe('测试单个字符串的值', function () {
         expect({}).to.be.empty;
         expect({'name': 'He'}).to.not.be.empty;
     });
+
+    it('[str] 长度为2，大于1，小于3，在1和3之间', function () {
+        expect(str).to.have.length.above(1);
+        expect(str).to.have.length.below(3);
+        expect(str).to.have.length.within(1, 3);
+    });
+
 });
 
 // describe('字符串之间的比较', function () {
