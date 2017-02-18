@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
 describe('测试单个字符串的值', function () {
-    var str, strEmpty, strNull, strUndefined, obj;
+    var str, strEmpty, strNull, strUndefined, strObj;
 
     // 每个用例执行之前，都重新初始化值
     beforeEach(function () {
@@ -9,58 +9,50 @@ describe('测试单个字符串的值', function () {
         strEmpty = '';
         strNull = null;
         strUndefined = undefined;
-        obj = {};
+        strObj = {};
     });
 
-    // 判断 [str] 为 string 类型
-    it('判断 [str] 为 string 类型: a', function () {
+    it('[str] 和 [strEmpty] 为 string 类型，但 [strObj]、[strNull]、[strUndefined] 皆不是', function () {
         // a 和 an 都是一样的
         expect(str).to.be.a('string');
-        expect(str).to.be.an('string');
+        expect(strEmpty).to.be.an('string');
+
+        expect(strObj).to.not.a('string');
+        expect(strNull).to.not.a('string');
+        expect(strUndefined).to.not.an('string');
     });
 
-    // 判断 [obj] 不为 string 类型
-    it('判断 [obj] 不为 string 类型', function () {
-        expect(obj).to.not.a('string');
-    });
-
-    // 判断 [strNull] 为 null 类型
-    it('判断 [strNull] 为 null 类型', function () {
+    it('[strNull] 为 null 类型，且 [strUndefined] 不为 null 类型', function () {
         expect(strNull).to.be.null;
+        expect(strUndefined).to.not.be.null;
     });
 
-    // 判断 [strUndefined] 为 undefined 类型
-    it('判断 [strUndefined] 为 undefined 类型', function () {
+    it('[strUndefined] 为 undefined 类型，且 [strNull] 不为 undefined 类型', function () {
         expect(strUndefined).to.be.undefined;
+        expect(strNull).to.not.be.undefined;
     });
 
-    // 判断 [str] 为 NaN
-    it('判断 [str] 为 NaN', function () {
+    it('[str] 为 NaN', function () {
         expect(str).to.be.NaN;
     });
 
-    // 判断 [str] 为真值（truthy），它会判断: !!str
-    it('判断 [str] 为真值（truthy）', function () {
+    it('[str] 为真值（truthy）', function () {
         expect(str).to.be.ok;
     });
 
-    // 判断 [strEmpty] 不为真值（truthy），它会判断: !!strEmpty
-    it('判断 [strEmpty] 不为真值（truthy）', function () {
+    it('[strEmpty] 不为真值（truthy）', function () {
         expect(strEmpty).to.not.be.ok;
     });
 
-    // 判断 [str] 不等于 true，它会判断: str===true
-    it('判断 [str] 不等于 true', function () {
+    it('[str] 不等于 true', function () {
         expect(str).to.not.be.true;
     });
 
-    // 判断 [str] 不等于 false，它会判断: str===false
-    it('判断 [str] 不等于 false', function () {
+    it('[str] 不等于 false', function () {
         expect(str).to.not.be.false;
     });
 
-    // 判断 [str] 包含单词 H 和 e
-    it('判断 [str] 包含单词 H 和 e', function () {
+    it('[str] 包含单词 H 和 e', function () {
         // include 和 contain 都是一样的
         expect(str).to.contain('H');
         expect(str).to.include('e');
