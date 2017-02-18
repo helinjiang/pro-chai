@@ -14,7 +14,7 @@ describe('测试单个字符串的值', function () {
         strObj = {};
     });
 
-    it('[str] 和 [strEmpty] 为 string 类型，但 [strNumber]、[strObj] 等皆不是', function () {
+    it('[str]/[strEmpty] 为 string 类型，但 [strNumber]/[strObj] 等皆不是', function () {
         // a 和 an 都是一样的
         expect(str).to.be.a('string');
         expect(strEmpty).to.be.an('string');
@@ -54,6 +54,24 @@ describe('测试单个字符串的值', function () {
         expect(str).to.include('e');
     });
 
+    it('[str]/[strEmpty] 不是 null 或 undefined，但 [strNull]/[strUndefined] 皆是', function () {
+        expect(str).to.exist;
+        expect(strEmpty).to.exist;
+
+        expect(strUndefined).to.not.exist;
+        expect(strNull).to.not.exist;
+    });
+
+    it('[str] 不为空，[strEmpty] 等为空', function () {
+        expect(str).to.not.be.empty;
+        expect(strEmpty).to.be.empty;
+
+        // 判断长度是否为0，数组和字符串检查其length属性，而对象则检查其key值的数量
+        expect([]).to.be.empty;
+        expect('').to.be.empty;
+        expect({}).to.be.empty;
+        expect({'name': 'He'}).to.not.be.empty;
+    });
 });
 
 // describe('字符串之间的比较', function () {
