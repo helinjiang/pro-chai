@@ -1,11 +1,40 @@
 var expect = require('chai').expect;
 
-describe('加法函数的测试', function () {
-    it('1 加 1 应该等于 2', function () {
-        expect(add(1, 1)).to.be.equal(2);
+describe('字符串-类型', function () {
+    var name;
+
+    beforeEach(function () {
+        name = 'He';
     });
 
-    it('任何数加0应该等于自身', function () {
-        expect(add(1, 0)).to.be.equal(1);
+    it('"He" is a String', function () {
+        expect(name).to.be.a('string');
     });
 });
+
+describe('字符串-相同', function () {
+    var name;
+
+    beforeEach(function () {
+        name = 'He';
+    });
+
+    // equal(value)
+    it('"He" is equal "He" ', function () {
+        expect(name).to.equal('He');
+    });
+});
+
+describe('字符串-不相同', function () {
+    var name;
+
+    beforeEach(function () {
+        name = 'He';
+    });
+
+    it('"He" is not equal "She" ', function () {
+        expect(name).to.not.equal('She');
+    });
+
+});
+
