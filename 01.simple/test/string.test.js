@@ -5,13 +5,18 @@ describe('测试单个字符串的值', function () {
 
     // 每个用例执行之前，都重新初始化值
     beforeEach(function () {
-        str = 'He';
+        str = 'Chai';
         strEmpty = '';
         strNumber = 1;
         strBoolean = true;
         strNull = null;
         strUndefined = undefined;
         strObj = {};
+    });
+
+    it('[str] 与 "Chai" 相等，与 "chai" 不相等', function () {
+        expect(str).to.equal('Chai');
+        expect(str).to.not.equal('chai');
     });
 
     it('[str]/[strEmpty] 为 string 类型，但 [strNumber]/[strObj] 等皆不是', function () {
@@ -48,10 +53,12 @@ describe('测试单个字符串的值', function () {
         expect(strEmpty).to.not.be.false;
     });
 
-    it('[str] 包含单词 H 和 e', function () {
+    it('[str] 包含单词 C 和 h，但不包含 c', function () {
         // include 和 contain 都是一样的
-        expect(str).to.contain('H');
-        expect(str).to.include('e');
+        expect(str).to.contain('C');
+        expect(str).to.include('h');
+
+        expect(str).to.not.include('c');
     });
 
     it('[str]/[strEmpty] 不是 null 或 undefined，但 [strNull]/[strUndefined] 皆是', function () {
@@ -70,13 +77,13 @@ describe('测试单个字符串的值', function () {
         expect([]).to.be.empty;
         expect('').to.be.empty;
         expect({}).to.be.empty;
-        expect({'name': 'He'}).to.not.be.empty;
+        expect({'name': 'Chai'}).to.not.be.empty;
     });
 
-    it('[str] 长度为2，大于1，小于3，在1和3之间', function () {
+    it('[str] 长度为4，大于1，小于5，在1和5之间', function () {
         expect(str).to.have.length.above(1);
-        expect(str).to.have.length.below(3);
-        expect(str).to.have.length.within(1, 3);
+        expect(str).to.have.length.below(5);
+        expect(str).to.have.length.within(1, 5);
     });
 
 });
