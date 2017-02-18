@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-describe('测试单个字符串的值', function () {
+describe('测试单个字符串相关', function () {
     var str, strEmpty, strNumber, strBoolean, strNull, strUndefined, strObj;
 
     // 每个用例执行之前，都重新初始化值
