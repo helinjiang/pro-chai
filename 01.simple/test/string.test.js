@@ -3,6 +3,7 @@ var expect = require('chai').expect;
 describe('测试单个字符串的值', function () {
     var str, strEmpty, strNull, strUndefined, obj;
 
+    // 每个用例执行之前，都重新初始化值
     beforeEach(function () {
         str = 'He';
         strEmpty = '';
@@ -21,6 +22,21 @@ describe('测试单个字符串的值', function () {
     // 判断 [obj] 不为 string 类型
     it('判断 [obj] 不为 string 类型', function () {
         expect(obj).to.not.a('string');
+    });
+
+    // 判断 [strNull] 为 null 类型
+    it('判断 [strNull] 为 null 类型', function () {
+        expect(strNull).to.be.null;
+    });
+
+    // 判断 [strUndefined] 为 undefined 类型
+    it('判断 [strUndefined] 为 undefined 类型', function () {
+        expect(strUndefined).to.be.undefined;
+    });
+
+    // 判断 [str] 为 NaN
+    it('判断 [str] 为 NaN', function () {
+        expect(str).to.be.NaN;
     });
 
     // 判断 [str] 为真值（truthy），它会判断: !!str
