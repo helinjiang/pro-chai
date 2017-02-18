@@ -1,40 +1,41 @@
 var expect = require('chai').expect;
 
-describe('字符串-类型', function () {
-    var name;
+describe('测试单个字符串的值', function () {
+    var str, strEmpty, strNull, strUndefined, obj;
 
     beforeEach(function () {
-        name = 'He';
+        str = 'He';
+        strEmpty = '';
+        strNull = null;
+        strUndefined = undefined;
+        obj = {};
     });
 
-    it('"He" is a String', function () {
-        expect(name).to.be.a('string');
+    // 判断 [str] 为 string 类型
+    it('判断 [str] 为 string 类型', function () {
+        expect(str).to.be.a('string');
+    });
+
+    // 判断 [obj] 不为 string 类型
+    it('判断 [obj] 不为 string 类型', function () {
+        expect(obj).to.not.a('string');
     });
 });
 
-describe('字符串-相同', function () {
-    var name;
-
-    beforeEach(function () {
-        name = 'He';
-    });
-
-    // equal(value)
-    it('"He" is equal "He" ', function () {
-        expect(name).to.equal('He');
-    });
-});
-
-describe('字符串-不相同', function () {
-    var name;
-
-    beforeEach(function () {
-        name = 'He';
-    });
-
-    it('"He" is not equal "She" ', function () {
-        expect(name).to.not.equal('She');
-    });
-
-});
-
+// describe('字符串之间的比较', function () {
+//     var strA, strB, strEmpty, strNull, strUndefined;
+//
+//     beforeEach(function () {
+//         name = 'He';
+//     });
+//
+//     // equal(value)
+//     it('"He" is equal "He" ', function () {
+//         expect(name).to.equal('He');
+//     });
+//
+//     it('"He" is not equal "She" ', function () {
+//         expect(name).to.not.equal('She');
+//     });
+// });
+//
