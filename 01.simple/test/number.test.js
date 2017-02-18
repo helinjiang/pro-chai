@@ -23,4 +23,33 @@ describe('测试数值相关', function () {
         expect(n0).to.not.be.a('string');
     });
 
+    it('[n0] 不是 NaN，[nNaN] 是 NaN', function () {
+        expect(n0).to.not.be.NaN;
+        expect(nNaN).to.be.NaN;
+    });
+
+    it('[n0] 大于 -1，但不大于 0', function () {
+        expect(n0).to.be.above(-1);
+        expect(n0).to.not.be.above(0);
+    });
+
+    it('[n0] 小于 1，但不小于 0', function () {
+        expect(n0).to.be.below(1);
+        expect(n0).to.not.be.below(0);
+    });
+
+    it('[n0] 大于或等于 0，不能说大于或等于 1', function () {
+        expect(n0).to.be.at.least(0);
+        expect(n0).to.not.be.at.least(1);
+    });
+
+    it('[n0] 小于或等于 0，不能说小于或等于 -1', function () {
+        expect(n0).to.be.at.most(0);
+        expect(n0).to.not.be.at.most(-1);
+    });
+
+    it('[n0] 在-1到1之间，也在-1到0之间', function () {
+        expect(n0).to.be.within(-1, 1);
+        expect(n0).to.be.within(-1, 0);
+    });
 });

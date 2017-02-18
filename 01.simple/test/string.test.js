@@ -96,6 +96,8 @@ describe('测试单个字符串相关', function () {
         expect(str).to.have.length.above(1);
         expect(str).to.have.length.below(5);
         expect(str).to.have.length.within(1, 5);
+
+        expect(str).to.have.length.of.at.least(4);
     });
 
 });
