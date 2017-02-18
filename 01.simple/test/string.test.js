@@ -26,10 +26,23 @@ describe('测试单个字符串的值', function () {
     // 判断 [obj] 不为 string 类型
     it('判断 [obj] 不为 string 类型', function () {
         expect(obj).to.not.a('string');
-
-        // a 和 an 都是一样的
-        // expect(obj).to.not.an('string');
     });
+
+    // 判断 [str] 为真值（truthy）
+    it('判断 [str] 为真值（truthy）', function () {
+        expect(str).to.be.ok;
+    });
+
+    // 判断 [str] 不等于 true
+    it('判断 [str] 不等于 true', function () {
+        expect(str).to.not.be.true;
+    });
+
+    // 判断 [strEmpty] 不为真值（truthy）
+    it('判断 [strEmpty] 不为真值（truthy）', function () {
+        expect(strEmpty).to.not.be.ok;
+    });
+
 });
 
 // describe('字符串之间的比较', function () {
