@@ -52,4 +52,9 @@ describe('测试数值相关', function () {
         expect(n0).to.be.within(-1, 1);
         expect(n0).to.be.within(-1, 0);
     });
+
+    it('1.5 符合 1 (+/- 0.5) 要求，但不符合 1 (+/- 0.1) 要求', function () {
+        expect(1.5).to.be.closeTo(1, 0.5);
+        expect(1.5).to.not.be.closeTo(1, 0.1);
+    });
 });
