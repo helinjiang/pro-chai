@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-describe('测试对象相关', function () {
+describe('测试常规对象相关', function () {
 
     it('{foo: "baz"} 拥有属性 foo，且其值为 baz 而不是 bar，值为string类型', function () {
         // 注意：property 方法改变了断言返回值，返回的是这个属性对应的值，而不再是原始的对象。
@@ -92,6 +92,47 @@ describe('测试对象相关', function () {
 
         // 不包含key值
         expect(foo).to.be.empty;
+    });
+
+});
+
+describe('测试高级对象相关', function () {
+
+    it('测试某个对象是否有某个函数', function () {
+        function Klass() {
+            this.foo = 'foo';
+            this.inFunc = function () {
+
+            };
+        }
+
+        Klass.prototype.bar = function () {
+        };
+
+        Klass.outFunc = function () {
+        };
+
+        expect(Klass).to.respondTo('bar');
+        expect(Klass).to.not.respondTo('inFunc');
+        expect(Klass).to.not.respondTo('foo');
+
+        expect(Klass).itself.to.respondTo('outFunc');
+        expect(Klass).itself.to.not.respondTo('inFunc');
+
+        var klassObj = new Klass();
+        expect(klassObj).to.respondTo('bar');
+        expect(klassObj).to.respondTo('inFunc');
+        expect(klassObj).to.not.respondTo('foo');
+    });
+
+    it('测试某个函数的返回值是否为真值', function () {
+        function compare(num) {
+            return num > 0;
+        }
+
+        // Asserts that the target passes a given truth test.
+        expect(1).to.satisfy(compare);
+        expect(0).to.not.satisfy(compare);
     });
 
 });
