@@ -9,8 +9,29 @@ describe('测试对象相关', function () {
             .and.equal('baz')
             .and.not.equal('bar');
 
-        // 简单判断属性和属性值的方式
+        // 简单判断对象是否有某个属性和属性值的方式
         expect({foo: 'baz'}).to.have.property('foo', 'baz');
+
+        // Asserts that the target has an own property name
+        expect({foo: 'baz'}).to.have.ownProperty('foo');
+        expect({foo: 'baz'}).to.not.have.ownProperty('foo2');
+    });
+
+    it('keys测试', function () {
+        // any 和 all 都需要在断言句中间出现，否则默认为 all
+
+        // any：至少包含一个，配合 have 或 contain 使用
+        expect({foo: 1, bar: 2}).to.have.any.keys('foo', 'baz');
+        expect({foo: 1, bar: 2}).to.have.any.keys('foo');
+        expect({foo: 1, bar: 2}).to.contain.any.keys('bar', 'baz');
+        expect({foo: 1, bar: 2}).to.contain.any.keys(['foo']);
+        expect({foo: 1, bar: 2}).to.contain.any.keys({'foo': 6});
+
+        // all：全部包含，配合 have 或 contain 使用
+        expect({foo: 1, bar: 2}).to.have.all.keys(['bar', 'foo']);
+        expect({foo: 1, bar: 2}).to.have.all.keys({'bar': 6, 'foo': 7});
+        expect({foo: 1, bar: 2, baz: 3}).to.contain.all.keys(['bar', 'foo']);
+        expect({foo: 1, bar: 2, baz: 3}).to.contain.all.keys({'bar': 6});
     });
 
     it('deep referencing 属性测试', function () {
@@ -29,7 +50,7 @@ describe('测试对象相关', function () {
         expect(deepObj).to.have.property('teas')
             .that.is.an('array')
             .with.deep.property('[2]')
-            .that.deep.equals({ tea: 'konacha' });
+            .that.deep.equals({tea: 'konacha'});
 
         var arr = [
             ['chai', 'matcha', 'konacha'],
@@ -38,6 +59,15 @@ describe('测试对象相关', function () {
 
         expect(arr).to.have.deep.property('[0][1]', 'matcha');
         expect(arr).to.have.deep.property('[1][2].tea', 'konacha');
+    });
+
+    it('deep.property时. 和 [] 的转义', function () {
+        var css = {'.link[target]': 42};
+        expect(css).to.have.property('.link[target]', 42);
+
+        // . 和 [] 等在设置了deep标记之后，需要自行处理转义
+        var deepCss = {'.link': {'[target]': 42}};
+        expect(deepCss).to.have.deep.property('\\.link.\\[target\\]', 42);
     });
 
     it('两个对象是否相等', function () {
