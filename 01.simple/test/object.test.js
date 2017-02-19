@@ -34,6 +34,30 @@ describe('测试常规对象相关', function () {
         expect({foo: 1, bar: 2, baz: 3}).to.contain.all.keys({'bar': 6});
     });
 
+    it('members 测试', function () {
+        expect([1, 2, 3]).to.include.members([3, 2]);
+        expect([1, 2, 3]).to.not.include.members([3, 2, 8]);
+
+        expect([4, 2]).to.have.members([2, 4]);
+        expect([5, 2]).to.not.have.members([5, 2, 1]);
+
+        expect([{id: 1}]).to.deep.include.members([{id: 1}]);
+    });
+
+    it('oneOf(list) 测试', function () {
+        expect('a').to.be.oneOf(['a', 'b', 'c']);
+        expect(9).to.not.be.oneOf(['z']);
+        expect([3]).to.not.be.oneOf([1, 2, [3]]);
+
+        var three = [3];
+
+        // for object-types, contents are not compared
+        expect(three).to.not.be.oneOf([1, 2, [3]]);
+
+        // comparing references works
+        expect(three).to.be.oneOf([1, 2, three]);
+    });
+
     it('deep referencing 属性测试', function () {
         var deepObj = {
             green: {
@@ -133,6 +157,17 @@ describe('测试高级对象相关', function () {
         // Asserts that the target passes a given truth test.
         expect(1).to.satisfy(compare);
         expect(0).to.not.satisfy(compare);
+    });
+
+    it('测试目标是否是某个类的对象', function () {
+        function Tea(name) {
+            this.name = name;
+        }
+
+        var chai = new Tea('chai');
+
+        expect(chai).to.be.an.instanceof(Tea);
+        expect([1, 2, 3]).to.be.instanceof(Array);
     });
 
 });
